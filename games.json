@@ -23,7 +23,11 @@
         .game-card h3 { font-size: 1.2rem; color: #e6ccff; text-shadow: 0 0 5px #bb33ff; }
         footer { text-align: center; margin-top: 40px; color: #a366ff; text-shadow: 0 0 5px #6600ff; }
         .game-down { text-align: center; color: #ff66aa; font-weight: bold; padding: 40px; }
-        @media (max-width: 768px) { .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 2px solid #bb33ff; flex-direction: row; justify-content: space-between; } .main { margin-left: 0; margin-top: 10px; } .game-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); } }
+        @media (max-width: 768px) {
+            .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 2px solid #bb33ff; flex-direction: row; justify-content: space-between; }
+            .main { margin-left: 0; margin-top: 10px; }
+            .game-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+        }
     </style>
 </head>
 <body>
@@ -42,12 +46,30 @@
         <div class="game-grid" id="gameGrid"></div>
     </div>
     <footer>&copy; 2025 Kestis Arcade</footer>
+
+    <!-- Particles.js -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
     <script>
-        particlesJS('particles-js', { "particles": { "number": {"value": 80}, "color": {"value": ["#bb33ff","#ff66ff","#e6ccff"]}, "shape": {"type": "circle"}, "opacity": {"value":0.7}, "size": {"value":3}, "line_linked": {"enable": true,"distance": 150,"color": "#bb33ff","opacity":0.4,"width":1}, "move": {"enable": true,"speed":2} }, "interactivity": {"events": {"onhover": {"enable": true, "mode": "grab"}}}, "retina_detect": true });
+        try {
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 80 },
+                    color: { value: ["#bb33ff","#ff66ff","#e6ccff"] },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.7 },
+                    size: { value: 3 },
+                    line_linked: { enable: true, distance: 150, color: "#bb33ff", opacity: 0.4, width: 1 },
+                    move: { enable: true, speed: 2 }
+                },
+                interactivity: { events: { onhover: { enable: true, mode: "grab" } } },
+                retina_detect: true
+            });
+        } catch(e) {
+            console.warn("Particles.js failed to load", e);
+        }
     </script>
 
-    <!-- Game Hub Script with fallback for missing games.json -->
+    <!-- Game Hub Script -->
     <script>
         const placeholderGames = [
             {"title":"Game 1","thumbnail":"https://via.placeholder.com/200x150.png?text=Game+1","path":"#"},
@@ -65,7 +87,7 @@
         async function loadGames() {
             let games = [];
             try {
-                const response = await fetch('games.json');
+                const response = await fetch('./games.json'); // safe path for Pages
                 if (!response.ok) throw new Error('games.json not found');
                 games = await response.json();
             } catch (err) {
@@ -85,18 +107,24 @@
                         <h3>${game.title}</h3>
                     </a>
                 `;
-                card.querySelector('a').addEventListener('click', function(e){
-                    fetch(game.path).catch(()=>{
-                        e.preventDefault();
-                        card.innerHTML = '<div class="game-down">This game seems to be down :( <br> Please contact website owner to fix the issue</div>';
+
+                // Only fetch real games, skip placeholders
+                if(game.path !== "#") {
+                    card.querySelector('a').addEventListener('click', function(e){
+                        fetch(game.path).catch(()=>{
+                            e.preventDefault();
+                            card.innerHTML = '<div class="game-down">This game seems to be down :( <br> Please contact website owner to fix the issue</div>';
+                        });
                     });
-                });
+                }
+
                 gameGrid.appendChild(card);
             });
         }
 
         loadGames();
 
+        // Search bar filter
         document.getElementById('searchInput').addEventListener('input', function() {
             const query = this.value.toLowerCase();
             document.querySelectorAll('.game-card').forEach(card => {
