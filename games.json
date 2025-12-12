@@ -1,27 +1,32 @@
 [
   {
-    "title": "Youtube",
+    "title": "YouTube",
     "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png",
-    "path": "https://www.youtube.com"
+    "path": "https://www.youtube.com",
+    "category": "Websites"
   },
   {
     "title": "Request A Game or Website",
     "thumbnail": "assets/Request.png",
-    "path": "https://drive.google.com/drive/u/0/home"
+    "path": "#",
+    "category": "Websites"
   },
   {
     "title": "Google",
     "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-    "path": "https://www.google.com"
+    "path": "https://www.google.com",
+    "category": "Websites"
   },
   {
-    "title": "Placeholder",
-    "thumbnail": "https://via.placeholder.com/200x150.png?text=Game+2",
-    "path": "#"
+    "title": "Demo Game 1",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Demo+Game+1",
+    "path": "games/demo1/index.html",
+    "category": "Arcade"
   },
   {
-    "title": "Placeholder",
-    "thumbnail": "https://via.placeholder.com/200x150.png?text=Game+3",
-    "path": "#"
+    "title": "Demo Game 2",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Demo+Game+2",
+    "path": "games/demo2/index.html",
+    "category": "Puzzle"
   }
 ]
