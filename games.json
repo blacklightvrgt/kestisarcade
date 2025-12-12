@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Youtube",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png",
+    "path": "https://www.youtube.com"
+  },
+  {
+    "title": "Request A Game or Website",
+    "thumbnail": "assets/Request.png",
+    "path": "https://drive.google.com/drive/u/0/home"
+  },
+  {
+    "title": "Google",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+    "path": "https://www.google.com"
+  },
+  {
+    "title": "Placeholder",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Game+2",
+    "path": "#"
+  },
+  {
+    "title": "Placeholder",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Game+3",
+    "path": "#"
+  }
+]
