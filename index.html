@@ -6,129 +6,180 @@
 <title>Kestis Arcade</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Orbitron', sans-serif; }
-body { height: 100vh; background: linear-gradient(135deg,#6b00ff,#ff00ff); overflow-x: hidden; color:#fff; }
-a { text-decoration:none;color:inherit; }
-#particles-js { position: fixed; width:100%; height:100%; z-index:-1; top:0; left:0; }
-.sidebar { position:fixed; left:0; top:0; width:220px; height:100%; background: rgba(0,0,0,0.6); border-right:2px solid #bb33ff; padding:20px; display:flex; flex-direction:column; }
-.sidebar h1 { font-size:1.8rem; color:#e6ccff; text-shadow:0 0 10px #bb33ff; margin-bottom:10px; }
-.sidebar p { font-size:0.9rem; color:#c699ff; text-shadow:0 0 5px #aa00ff; margin-bottom:20px; }
-.main { margin-left:240px; padding:20px; display:flex; flex-direction:column; }
-.search-bar { margin-bottom:20px; }
-.search-bar input { width:100%; padding:10px; border-radius:8px; border:none; background:rgba(255,255,255,0.1); color:#fff; font-size:1rem; }
-.game-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:20px; }
-.game-card { background:rgba(255,255,255,0.05); padding:10px; border-radius:10px; text-align:center; box-shadow:0 0 10px #bb33ff; transition: transform 0.2s; position: relative; }
-.game-card:hover { transform:scale(1.05); box-shadow:0 0 20px #ff66ff; }
-.game-card img { max-width:100%; border-radius:8px; margin-bottom:10px; }
-.game-card h3 { font-size:1.2rem; color:#e6ccff; text-shadow:0 0 5px #bb33ff; }
-.favorite-star { position:absolute; top:5px; right:5px; font-size:1.5rem; color:yellow; cursor:pointer; display:none; }
-.game-card:hover .favorite-star { display:block; }
-#gameContainer { margin-top:20px; width:100%; height:600px; border:2px solid #bb33ff; border-radius:10px; overflow:hidden; }
-footer { text-align:center; margin-top:20px; color:#a366ff; text-shadow:0 0 5px #6600ff; }
-@media(max-width:768px){ .sidebar{width:100%; height:auto; position:relative; border-right:none; border-bottom:2px solid #bb33ff; flex-direction:row; justify-content:space-between;} .main{margin-left:0;margin-top:10px;} .game-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));} }
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Orbitron',sans-serif; }
+  body { height:100vh; background:linear-gradient(135deg,#6b00ff,#ff00ff); color:#fff; overflow-x:hidden; }
+  a { text-decoration:none; color:inherit; }
+  #particles-js { position:fixed; width:100%; height:100%; z-index:-1; top:0; left:0; }
+  .sidebar { position:fixed; left:0; top:0; width:220px; height:100%; background:rgba(0,0,0,0.6); border-right:2px solid #bb33ff; padding:20px; display:flex; flex-direction:column; }
+  .sidebar h1 { font-size:1.8rem; color:#e6ccff; text-shadow:0 0 10px #bb33ff; margin-bottom:10px; }
+  .sidebar p { font-size:0.9rem; color:#c699ff; text-shadow:0 0 5px #aa00ff; margin-bottom:20px; }
+  .main { margin-left:240px; padding:20px; display:flex; flex-direction:column; }
+  .tabs { display:flex; gap:10px; margin-bottom:15px; }
+  .tab { padding:5px 10px; background:rgba(255,255,255,0.1); border-radius:5px; cursor:pointer; }
+  .tab.active { background:#bb33ff; color:#fff; }
+  .search-bar input { width:100%; padding:10px; border-radius:8px; border:none; background:rgba(255,255,255,0.1); color:#fff; font-size:1rem; margin-bottom:20px; }
+  .game-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:20px; }
+  .game-card { background:rgba(255,255,255,0.05); padding:10px; border-radius:10px; text-align:center; box-shadow:0 0 10px #bb33ff; transition:transform 0.2s, box-shadow 0.2s; position:relative; }
+  .game-card:hover { transform:scale(1.05); box-shadow:0 0 20px #ff66ff; }
+  .game-card img { max-width:100%; border-radius:8px; margin-bottom:10px; }
+  .game-card h3 { font-size:1.2rem; color:#e6ccff; text-shadow:0 0 5px #bb33ff; }
+  .star { position:absolute; top:5px; right:5px; cursor:pointer; font-size:1.2rem; color:#fff; text-shadow:0 0 5px #6600ff; }
+  .star.fav { color:#ff0; text-shadow:0 0 10px #ff0; }
+  #iframe-container { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:1000; }
+  #game-frame { width:100%; height:100%; border:none; }
+  .close-btn { position:absolute; top:10px; right:10px; padding:5px 10px; background:#bb33ff; color:#fff; border:none; border-radius:5px; cursor:pointer; z-index:1001; }
+  footer { text-align:center; margin-top:40px; color:#a366ff; text-shadow:0 0 5px #6600ff; }
+  @media(max-width:768px){ .sidebar{width:100%; height:auto; position:relative; border-right:none; border-bottom:2px solid #bb33ff; flex-direction:row; justify-content:space-between; } .main{margin-left:0;margin-top:10px;} .game-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));} }
 </style>
 </head>
 <body>
+
 <div id="particles-js"></div>
+
 <div class="sidebar">
-    <div>
-        <h1>Kestis Arcade</h1>
-        <p>One of the BEST websites for playing games during school!</p>
-    </div>
-    <div style="align-self:flex-end; color:#bb33ff; text-shadow:0 0 5px #6600ff;">Made by Conner Tietsort</div>
+  <div>
+    <h1>Kestis Arcade</h1>
+    <p>One of the BEST websites for playing games during school!</p>
+  </div>
+  <div style="align-self:flex-end;color:#bb33ff;text-shadow:0 0 5px #6600ff;">Made by Conner Tietsort</div>
 </div>
+
 <div class="main">
-    <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search games...">
-    </div>
-    <div class="game-grid" id="gameGrid"></div>
-    <div id="gameContainer"></div>
+  <div class="tabs">
+    <div class="tab active" data-category="All">All</div>
+    <div class="tab" data-category="Websites">Websites</div>
+    <div class="tab" data-category="Arcade">Arcade</div>
+    <div class="tab" data-category="Parkour">Parkour</div>
+    <div class="tab" data-category="Puzzle">Puzzle</div>
+    <div class="tab" data-category="Favorites">★ Favorites</div>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search games...">
+  </div>
+
+  <div class="game-grid" id="gameGrid"></div>
 </div>
+
 <footer>&copy; 2025 Kestis Arcade</footer>
+
+<!-- Iframe for games -->
+<div id="iframe-container">
+  <button class="close-btn" id="closeFrame">Close</button>
+  <iframe id="game-frame"></iframe>
+</div>
 
 <!-- Particles.js -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 <script>
-try {
-    particlesJS('particles-js', { particles: { number:{value:80}, color:{value:["#bb33ff","#ff66ff","#e6ccff"]}, shape:{type:"circle"}, opacity:{value:0.7}, size:{value:3}, line_linked:{enable:true,distance:150,color:"#bb33ff",opacity:0.4,width:1}, move:{enable:true,speed:2}}, interactivity:{events:{onhover:{enable:true,mode:"grab"}}}, retina_detect:true });
-}catch(e){console.warn("Particles.js failed", e);}
+try{
+  particlesJS('particles-js',{
+    particles:{number:{value:80},color:{value:["#bb33ff","#ff66ff","#e6ccff"]},shape:{type:"circle"},opacity:{value:0.7},size:{value:3},line_linked:{enable:true,distance:150,color:"#bb33ff",opacity:0.4,width:1},move:{enable:true,speed:2}},
+    interactivity:{events:{onhover:{enable:true,mode:"grab"}}},retina_detect:true
+  });
+}catch(e){console.warn("Particles.js failed to load",e);}
 </script>
 
 <!-- Arcade Script -->
 <script>
+const gameGrid = document.getElementById('gameGrid');
+const searchInput = document.getElementById('searchInput');
+const tabs = document.querySelectorAll('.tab');
+const iframeContainer = document.getElementById('iframe-container');
+const gameFrame = document.getElementById('game-frame');
+const closeFrame = document.getElementById('closeFrame');
+
 let games = [];
 let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
-async function loadGamesJson() {
-    try {
-        const response = await fetch('games.json');
-        if (!response.ok) throw new Error('games.json not found');
-        games = await response.json();
-    } catch(e) {
-        console.warn("Failed to load games.json", e);
-        games = [];
-    }
-    renderGames();
+async function loadGames(){
+  try{
+    const response = await fetch('games.json');
+    if(!response.ok) throw new Error('games.json not found');
+    games = await response.json();
+  }catch(e){
+    console.warn('Failed to load games.json', e);
+    games = [];
+  }
+  renderGames();
 }
 
-function renderGames() {
-    const gameGrid = document.getElementById('gameGrid');
-    gameGrid.innerHTML = '';
-    games.forEach(game=>{
-        const card = document.createElement('div');
-        card.classList.add('game-card');
-        card.innerHTML = `
-            <span class="favorite-star">&#9733;</span>
-            <img src="${game.thumbnail}" alt="${game.title}">
-            <h3>${game.title}</h3>
-        `;
-        // Favorite toggle
-        const star = card.querySelector('.favorite-star');
-        if(favorites.includes(game.title)) star.style.color = 'orange';
-        star.addEventListener('click', e=>{
-            e.stopPropagation();
-            if(favorites.includes(game.title)){
-                favorites = favorites.filter(f=>f!==game.title);
-                star.style.color='yellow';
-            } else {
-                favorites.push(game.title);
-                star.style.color='orange';
-            }
-            localStorage.setItem('favorites', JSON.stringify(favorites));
-        });
+function renderGames(category="All",search=""){
+  gameGrid.innerHTML="";
+  let filtered = games.filter(game=>{
+    let matchCat = category==="All"||category==="Favorites"?(category==="Favorites"?favorites.includes(game.path):true):game.category===category;
+    let matchSearch = game.title.toLowerCase().includes(search.toLowerCase());
+    return matchCat && matchSearch;
+  });
 
-        card.addEventListener('click', ()=>{
-            if(game.path==='') return alert("This game has no link.");
-            if(game.path==='#'){
-                alert("This game or website is not available yet.");
-                return;
-            }
-            const gameContainer = document.getElementById('gameContainer');
-            gameContainer.innerHTML = '';
-            const iframe = document.createElement('iframe');
-            iframe.src = game.path;
-            iframe.width='100%';
-            iframe.height='100%';
-            iframe.style.border='none';
-            // Fallback if site blocks iframe
-            iframe.onerror = ()=>{ window.open(game.path,'_blank'); alert('Cannot embed. Opening in new tab.'); }
-            gameContainer.appendChild(iframe);
-        });
+  if(filtered.length===0){
+    gameGrid.innerHTML="<div style='color:#ff66aa;font-weight:bold;padding:20px'>No games found</div>";
+    return;
+  }
 
-        gameGrid.appendChild(card);
+  filtered.forEach(game=>{
+    const card = document.createElement('div');
+    card.classList.add('game-card');
+    card.innerHTML=`
+      <span class="star ${favorites.includes(game.path)?"fav":""}">★</span>
+      <img src="${game.thumbnail}" alt="${game.title}">
+      <h3>${game.title}</h3>
+    `;
+
+    // Star click (favorite)
+    card.querySelector('.star').addEventListener('click',e=>{
+      e.stopPropagation();
+      if(favorites.includes(game.path)){
+        favorites = favorites.filter(f=>f!==game.path);
+        card.querySelector('.star').classList.remove('fav');
+      }else{
+        favorites.push(game.path);
+        card.querySelector('.star').classList.add('fav');
+      }
+      localStorage.setItem('favorites',JSON.stringify(favorites));
     });
+
+    // Click to play/open
+    card.addEventListener('click',()=>{
+      gameFrame.src = game.path;
+      iframeContainer.style.display="block";
+      // Fallback if blocked by X-Frame-Options
+      gameFrame.onload = ()=>{
+        try{
+          gameFrame.contentWindow.document;
+        }catch(e){
+          window.open(game.path,"_blank");
+          iframeContainer.style.display="none";
+        }
+      };
+    });
+
+    gameGrid.appendChild(card);
+  });
 }
 
-// Search
-document.getElementById('searchInput').addEventListener('input', function(){
-    const q=this.value.toLowerCase();
-    document.querySelectorAll('.game-card').forEach(card=>{
-        const title = card.querySelector('h3').textContent.toLowerCase();
-        card.style.display = title.includes(q)?'block':'none';
-    });
+// Tabs
+tabs.forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    tabs.forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    renderGames(tab.dataset.category,searchInput.value);
+  });
 });
 
-loadGamesJson();
+// Search
+searchInput.addEventListener('input',()=>{
+  const activeTab = document.querySelector('.tab.active').dataset.category;
+  renderGames(activeTab,searchInput.value);
+});
+
+// Close iframe
+closeFrame.addEventListener('click',()=>{
+  iframeContainer.style.display="none";
+  gameFrame.src="";
+});
+
+loadGames();
 </script>
 </body>
 </html>

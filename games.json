@@ -2,31 +2,133 @@
   {
     "title": "YouTube",
     "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png",
-    "path": "games/YouTube.html",
+    "path": "https://mygameshub.pages.dev/YouTube/index.html",
     "category": "Websites"
   },
   {
-    "title": "Request A Game or Website",
-    "thumbnail": "assets/Request.png",
+    "title": "A Dark Room",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=A+Dark+Room",
+    "path": "https://mygameshub.pages.dev/adarkroom-main/index.html",
+    "category": "Adventure"
+  },
+  {
+    "title": "Placeholder 1",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Placeholder+1",
     "path": "#",
-    "category": "Websites"
-  },
-  {
-    "title": "Big Tower Tiny Square",
-    "thumbnail": "assets/BigSmallSquare.png",
-    "path": "games/Big-Tower-Tiny-Square.html",
-    "category": "Parkour"
-  },
-  {
-    "title": "Demo Game 1",
-    "thumbnail": "https://via.placeholder.com/200x150.png?text=Demo+Game+1",
-    "path": "games/demo1/index.html",
     "category": "Arcade"
   },
   {
-    "title": "Demo Game 2",
-    "thumbnail": "https://via.placeholder.com/200x150.png?text=Demo+Game+2",
-    "path": "games/demo2/index.html",
-    "category": "Puzzle"
+    "title": "Placeholder 2",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Placeholder+2",
+    "path": "#",
+    "category": "Arcade"
+  },
+  {
+    "title": "Placeholder 3",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Placeholder+3",
+    "path": "#",
+    "category": "Arcade"
+  },
+  {
+    "title": "Placeholder 4",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Placeholder+4",
+    "path": "#",
+    "category": "Arcade"
+  },
+  {
+    "title": "Placeholder 5",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Placeholder+5",
+    "path": "#",
+    "category": "Arcade"
+  },
+  {
+    "title": "Placeholder 6",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Placeholder+6",
+    "path": "#",
+    "category": "Arcade"
+  },
+  {
+    "title": "Placeholder 7",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Placeholder+7",
+    "path": "#",
+    "category": "Arcade"
+  },
+  {
+    "title": "Placeholder 8",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Placeholder+8",
+    "path": "#",
+    "category": "Arcade"
+  },
+  {
+    "title": "Placeholder 9",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Placeholder+9",
+    "path": "#",
+    "category": "Arcade"
+  },
+  {
+    "title": "Placeholder 10",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Placeholder+10",
+    "path": "#",
+    "category": "Arcade"
+  },
+  {
+    "title": "Placeholder 11",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Placeholder+11",
+    "path": "#",
+    "category": "Arcade"
+  },
+  {
+    "title": "Placeholder 12",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Placeholder+12",
+    "path": "#",
+    "category": "Arcade"
+  },
+  {
+    "title": "Placeholder 13",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Placeholder+13",
+    "path": "#",
+    "category": "Arcade"
+  },
+  {
+    "title": "Placeholder 14",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Placeholder+14",
+    "path": "#",
+    "category": "Arcade"
+  },
+  {
+    "title": "Placeholder 15",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Placeholder+15",
+    "path": "#",
+    "category": "Arcade"
+  },
+  {
+    "title": "Placeholder 16",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Placeholder+16",
+    "path": "#",
+    "category": "Arcade"
+  },
+  {
+    "title": "Placeholder 17",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Placeholder+17",
+    "path": "#",
+    "category": "Arcade"
+  },
+  {
+    "title": "Placeholder 18",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Placeholder+18",
+    "path": "#",
+    "category": "Arcade"
+  },
+  {
+    "title": "Placeholder 19",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Placeholder+19",
+    "path": "#",
+    "category": "Arcade"
+  },
+  {
+    "title": "Placeholder 20",
+    "thumbnail": "https://via.placeholder.com/200x150.png?text=Placeholder+20",
+    "path": "#",
+    "category": "Arcade"
   }
 ]
